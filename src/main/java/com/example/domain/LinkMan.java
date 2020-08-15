@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity(name = "linkman")
 @Getter
 @Setter
-@ToString
 public class LinkMan {
     /**
       *  @Author Liu Haonan

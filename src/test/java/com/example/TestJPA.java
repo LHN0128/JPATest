@@ -20,6 +20,7 @@ import javax.persistence.criteria.*;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = JpaTestApplication.class)
@@ -235,6 +236,26 @@ public class TestJPA {
         });
         User user = userOptional.get();
         userDao.delete(user);
+
+    }
+
+    /**
+      *  @Author Liu Haonan
+      *  @Date 2020/8/15 17:45
+      *  @Description 使用对象导航查询，查询customer和与他相关的所有联系人
+     *                  直接调用get方法即可
+      */
+
+    @Test
+    @Transactional
+    @Rollback(value = false)
+    public void testOGNQuery(){
+        Customer customer = customerDao.getOne(3l);//查询id为3的客户
+        //使用对象导航查询，调用get方法就可以获取到下面所有的里联系人
+        Set<LinkMan> linkManSet = customer.getLinkManSet();
+        for (LinkMan linkMan : linkManSet) {
+            System.out.println(linkMan);
+        }
 
     }
 }

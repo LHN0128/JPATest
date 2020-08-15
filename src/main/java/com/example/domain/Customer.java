@@ -11,7 +11,6 @@ import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @Entity(name = "customer")
 public class Customer {
 
